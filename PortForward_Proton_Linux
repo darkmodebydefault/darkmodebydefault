@@ -1,0 +1,25 @@
+##This is how to setup portwarding on a Debian/Ubuntu system. Since Proton doesn't give you the ability to do so. This assumes you have already updated your distro##
+
+sudo apt install natpmpc
+
+##This will verify the version you are running on your system##
+apt policy natpmpc libnatpmp
+
+##To obtain the gateway address##
+natpmpc
+
+##Ensure that portforwarding is allowed on the VPN server##
+natpmpc -g (IP address of gateway)
+
+##Create a UDP port mapping##
+natpmpc -a 1 0 udp -g (IP address of gateway)
+
+##Create a TCP port mapping##
+natpmpc a -1 0 tcp -g (IP address of gateway)
+
+##Loop natpmpc to prevent it from expiring##
+while true ; do date ; natpmpc -a 1 0 udp 60 -g (IP Address of gateway) && natpmpc -a 1 0 tcp 60 -g 10.2.0.1 || { echo -e "ERROR with natpmpc command \a" ; break } ; sleep ; 45 ; done
+
+##CLOSING THE TERMINAL WINDOW WILL CLOSE THE PORT FORWARDING## 
+
+To ensure this worked correctly, https://ipleak.net
