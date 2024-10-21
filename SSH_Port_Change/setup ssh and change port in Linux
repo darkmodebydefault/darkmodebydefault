@@ -1,0 +1,33 @@
+##This guide will assist in setting up ssh on a new Linux Server and how to change the port used by SSH. This assumes your system is update and upgraded.##
+
+##Install OpenSSH-Server##
+sudo apt install openssh-server
+
+##Configure the firewall##
+sudo ufw status
+
+##If UFW is inactive, enable##
+sudo ufw enable
+
+##Allow inbound SSH Connections##
+sudo ufw allow ssh
+
+##Change the default port##
+sudo nano /etc/shh/sshd_config
+
+##Find the Line that starts with #Port 22 and change to an unused port. Remember to remove the # at the begging of the line##
+
+##Update the UFW rule to allow inbound connections on custom SSH port##
+sudo ufw delete allow ssh
+
+##Add the new rule with custom SSH Port##
+sudo ufw allow *new port number*/tcp
+
+##Restart the seravice##
+sudo systemctl restart ssh
+
+##Verify the status of the configuration##
+sudo systemctl status ssh
+
+##Connect to your custom port from a new device##
+ssh -p *new port number created* yourusername@ipaddress
