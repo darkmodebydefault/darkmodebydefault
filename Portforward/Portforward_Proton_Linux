@@ -18,7 +18,7 @@ natpmpc -a 1 0 udp -g (IP address of gateway)
 natpmpc a -1 0 tcp -g (IP address of gateway)
 
 ##Loop natpmpc to prevent it from expiring##
-while true ; do date ; natpmpc -a 1 0 udp 60 -g (IP Address of gateway) && natpmpc -a 1 0 tcp 60 -g (IP Address of gateway) || { echo -e "ERROR with natpmpc command \a" ; break } ; sleep ; 45 ; done
+while true ; do date ; natpmpc -a 1 0 udp 60 -g (IP Address of gateway) && natpmpc -a 1 0 tcp 60 -g (IP Address of gateway) || { echo -e "ERROR with natpmpc command \a" ; break } ; sleep 45 ; done
 
 ##CLOSING THE TERMINAL WINDOW WILL CLOSE THE PORT FORWARDING## 
 
